@@ -3,11 +3,11 @@ Exercise 3.4
 Checking login credentials:
 Username - can include uppercase, lowercase, digits and '_' only. must be 3-16 characters
 Password - must be 8-40 characters. Must include at least 1 uppercase, 1 lowercase, 1 digit, and 1 special characters
-1 - Define a check_input function - input username, password - return "OK" if pass all checks
+1 - Define a check_input function - input username, password - return "OK" if all checks pass
 2 - Define an exception for each constraint
 3 - raise exception in check_input if constraint has not been met
 4 - write main function that will keep prompting user for input until both inputs pass
-5 - Improve UsernameContainsIllegalCharacters so show index of bad char and improve PasswordMissingCharacter to show what type of char is missing
+5 - Improve UsernameContainsIllegalCharacters so that it shows index of the illegal char and improve PasswordMissingCharacter (by adding 4 subclasses of it) to show what type of char is missing
 """
 
 
@@ -33,11 +33,11 @@ class UsernameTooLong(Exception):
 class UsernameContainsIllegalCharacter(Exception):
     def __init__(self, username):
         missing = set(username).difference(allowed_user)
-        for c in username:
+        for i, c in enumerate(username):
             if c in missing:
                 self.badchar = c
+                self.index = i
                 break
-        self.index = username.index(self.badchar)
 
     def __str__(self):
         return f"Username contains illegal character {self.badchar!r} at index {self.index}"
