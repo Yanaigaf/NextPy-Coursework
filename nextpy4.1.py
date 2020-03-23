@@ -48,7 +48,7 @@ def first_prime_over(n):
 
 
 def main2():
-    print(first_prime_over())
+    print(first_prime_over(123123))
 
 
 if __name__ == "__main__":
